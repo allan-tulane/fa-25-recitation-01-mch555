@@ -119,5 +119,5 @@ def print_results(results):
 
 if __name__ == "__main__":
 	print_results(compare_search())
-
+ 
  
