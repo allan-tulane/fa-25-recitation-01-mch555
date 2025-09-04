@@ -3,8 +3,9 @@ CMPS 2200  Recitation 1
 """
 
 ### the only imports needed are here
-import tabulate
+import tabulate  
 import time
+
 ###
 
 def linear_search(mylist, key):
@@ -33,6 +34,18 @@ def _binary_search(mylist, key, left, right):
 	  index of key in mylist, or -1 if not present.
 	"""
 	### TODO
+	
+	left = 0
+	right = len(mylist)-1
+	while left <= right:
+		middle = (left + right) //2
+		if mylist[middle] == key:
+			return middle
+		elif mylist[middle] < key:
+			left = middle +1
+		else:
+			right = middle -1
+	return -1
 
 	###
 
@@ -58,6 +71,11 @@ def time_search(search_fn, mylist, key):
 	  search function on this input.
 	"""
 	### TODO
+	start = time.time()
+	search_fn(mylist, key)
+	end = time.time()
+	result=(end - start)* 1000
+	return result
 
 	###
 
@@ -77,6 +95,17 @@ def compare_search(sizes=[1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]):
 	  for each method to run on each value of n
 	"""
 	### TODO
+	results = []
+	for size in sizes:
+		n = int(size)
+		mylist = list(range(n))
+		key = -1
+
+		linear_t = time_search(linear_search, mylist, key)
+		binary_t = time_search(binary_search, mylist, key)
+		results.append((n, linear_t, binary_t))
+
+	return results
 
 	###
 
@@ -86,4 +115,10 @@ def print_results(results):
 							headers=['n', 'linear', 'binary'],
 							floatfmt=".3f",
 							tablefmt="github"))
+	
+
+if __name__ == "__main__":
+	print_results(compare_search())
+
+
 
