@@ -89,3 +89,4 @@ Yes, they match the empirical results from the timing data. This is because for 
   + For what values of $k$ is it more efficient to first sort and then use binary search versus just using linear search without sorting? **TODO: your answer goes here**
 
   if you search few times, then linear search is better because sorting costs too much, but if you search many times, then binary search is must faster. So if you search more than n times, it is better to sort and then use binary search (k>=O(n))
+ 
